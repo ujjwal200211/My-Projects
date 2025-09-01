@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="password" class="pswd" placeholder="Password...">
+    <button>Show</button>
+  </body>
+  <script>
+    const pswd = document.querySelector(".pswd");
+    const btn = document.querySelector("button");
+
+    function showHide(){
+      if (pswd.getAttribute("type") === ("password")) {
+        pswd.setAttribute("type", "text"); // Set "type" Attribute value to "text".
+        btn.textContent = "Hide";
+      } else {
+        pswd.setAttribute("type", "password") // Set "type" Attribute value to "password".
+        btn.textContent = "Show";
+      }
+    }
+
+    btn.addEventListener("click", showHide)
+  </script>
+</html>
