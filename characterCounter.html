@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" class="text" placeholder="type" maxlength="50" />
+    <h4>Characters left: 50</h4>
+  </body>
+  <script>
+    const text = document.querySelector(".text");
+    const h4 = document.querySelector("h4");
+
+    function count() {
+      let remaining; // Variable to store remaining characters.
+      remaining = 50 - text.value.length; // Shows remaining characters.
+      h4.textContent = `Characters left: ${remaining}`;
+    }
+
+    text.addEventListener("input", count);
+  </script>
+</html>
