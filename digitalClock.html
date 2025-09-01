@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body{
+      display: grid;
+      place-items: center;
+    }
+  </style>
+  <body>
+    <h1></h1>
+  </body>
+  <script>
+    let clockTime = document.querySelector("h1")
+ 
+    function showTime(){
+      let date = new Date(); // Creates Date Method
+      let secs = String(date.getSeconds()).padStart(2, "0"); // Gives Current seconds.
+      let mins = String(date.getMinutes()).padStart(2, "0"); // Gives Current minutes.
+      let hrs = date.getHours();  // Gives Current hours.
+      let amPm; // Variable for showing AM & PM.
+      if (hrs >= 12) { // Conditional to show AM & PM.
+        amPm = "PM";
+      }
+      else{
+        amPm = "AM";
+      }
+
+      hrs = hrs % 12; // Conversion of hrs into 12 hour format
+      if(hrs === 0){ // Conditional: If hrs === 0, give 12 hour.
+        hrs = 12;
+      }
+      hrs = String(hrs).padStart(2, "0");
+
+      // .padStart method returns a extra 0 for better ui. It only works with string, that's why we turned every variable to string using String() method.
+
+      clockTime.textContent = `${hrs}: ${mins}: ${secs} ${amPm}`;
+    }
+
+    setInterval(showTime, 1000); // Changes time every second.
+  </script>
+</html>
