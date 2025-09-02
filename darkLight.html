@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+        .dark-mode {
+            background-color: rgb(30, 30, 30);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>This is a heading</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis temporibus esse corporis quidem totam et quis accusantium delectus dicta asperiores quasi obcaecati doloribus quo commodi laboriosam illum laudantium, blanditiis velit?9</p>
+    <button >Dark</button>
+    <script>
+        const btn = document.querySelector("button");
+        const body = document.body;
+
+        btn.addEventListener("click", ()=>{
+            body.classList.toggle("dark-mode");
+            if (body.classList.contains("dark-mode")) {
+                btn.textContent = "Light"
+            } else {
+                btn.textContent = "Dark";
+            }
+        })
+
+    </script>
+</body>
+</html>
