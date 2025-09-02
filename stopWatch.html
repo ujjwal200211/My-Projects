@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    button {
+      width: 100px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+  </style>
+  <body>
+    <h1>00 : 00 : 00.00</h1>
+    <div class="buttons">
+      <button class="start">Start</button>
+      <button class="stop">Stop</button>
+      <button class="reset">Reset</button>
+    </div>
+    <script>
+      let screen = document.querySelector("h1");
+      let start = document.querySelector(".start");
+      let stop = document.querySelector(".stop");
+      let reset = document.querySelector(".reset");
+
+      let seconds = 0;
+      let minutes = 0;
+      let hours = 0;
+      let milliSeconds = 0;
+      let intervalId; // Variable to store interval ID.
+
+      function updatetime() { // Function to show time.
+        milliSeconds += 10;
+
+        if (milliSeconds === 1000) {
+          milliSeconds = 0;
+          seconds++;
+        }
+
+        if (seconds === 60) {
+          seconds = 0;
+          minutes++;
+        }
+
+        if (minutes === 60) {
+          minutes = 0;
+          hours++;
+        }
+
+        let s = String(seconds).padStart(2, "0");
+        let m = String(minutes).padStart(2, "0");
+        let h = String(hours).padStart(2, "0");
+        let ms = String(Math.floor(milliSeconds / 10)).padStart(2, "0");
+
+        screen.textContent = `${h} : ${m} : ${s}.${ms}`;
+      }
+
+      start.addEventListener("click", () => {
+        clearInterval(intervalId);
+        intervalId = setInterval(updatetime, 10); // Updates time 10 times in a second.
+      });
+
+      stop.addEventListener("click", () => {
+        clearInterval(intervalId); // Stops the stopwatch using intervalId variable
+      });
+
+      reset.addEventListener("click", () => {
+        clearInterval(intervalId); // Resets stopwatch to 00:00:00.00
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        screen.textContent = `00 : 00 : 00.00`;
+      });
+
+      document.addEventListener("keydown", (event) => { // Keys functionality to start, stop and reset button.
+        const key = event.key.toLowerCase();
+
+        if (key === " ") {
+          clearInterval(intervalId);
+          intervalId = setInterval(updatetime, 10);
+        } else if (key === "s") {
+          clearInterval(intervalId);
+        } else if (key === "r") {
+          clearInterval(intervalId);
+          hours = 0;
+          minutes = 0;
+          seconds = 0;
+          screen.textContent = `00 : 00 : 00.00`;
+        }
+      });
+    </script>
+  </body>
+</html>
