@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    button {
+      width: 100px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    input {
+      margin-bottom: 2rem;
+    }
+  </style>
+  <body>
+    <input type="date" />
+    <button>Calculate</button>
+    <h3>Please select date and calculate the age.</h3>
+    <script>
+      const dob = document.querySelector("input");
+      const btn = document.querySelector("button");
+      const text = document.querySelector("h3");
+
+      function calc() {
+        let today = new Date();
+        let dobDate = new Date(dob.value);
+
+        if (!dob.value) {
+          text.textContent = "Please select a valid date.";
+          return;
+        }
+
+        let years = today.getFullYear() - dobDate.getFullYear();
+        let months = today.getMonth() - dobDate.getMonth();
+        let days = today.getDate() - dobDate.getDate();
+
+        // Adjust days if negative
+        if (days < 0) {
+          months--;
+          // Get days in previous month
+          let prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+          days += prevMonth.getDate();
+        }
+
+        // Adjust months if negative
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+
+        text.textContent = `Your age is ${years} years, ${months} months, and ${days} days.`;
+      }
+      btn.addEventListener("click", calc);
+    </script>
+  </body>
+</html>
